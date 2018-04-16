@@ -5,29 +5,45 @@ var myFunc = [
     analogous,
     shades
 ];
+var lumaTh = 80;
 var bodyStyles = document.documentElement.style;
 $( document ).ready(function() {
     init();
-    $( 'a' ).on( 'click', function() {
-        $( this ).parent().find( 'a.active' ).removeClass( 'active' );
-        $( this ).addClass( 'active' );
+    $('a').on('click', function() {
+        $(this).parent().find('a.active').removeClass('active');
+        $(this).addClass('active');
     });
     
-    $('#generate').on( 'click', function(){
+    $('.colors > input').on('keyup', function() {
+        if(!$(this).siblings("button").hasClass("locked")) {
+            $(this).parent().css('background', $(this).val());
+        }
+    });
+    $('.lock').on('click', function(){
+        $(this).toggleClass("locked");
+        $(this).siblings("input").prop("readonly", function(index, prop){
+            return prop == true ? null : true;
+        });
+        $(this).find('i').toggleClass("fa-lock");
+        $(this).find('i').toggleClass("fa-unlock-alt");
+    });
+    $('#generate').on('click', function(){
         var colors = myFunc[$("#type-dropdown").prop('selectedIndex')]();
         $(".colors").each(function(i) {
-            var hex = rgb2Hex(colors[i]);
-            $(this).css({"background-color": hex});
-            var input = $(this).find("input");
-            var luma = 0.2126 * colors[i].r + 0.7152 * colors[i].g + 0.0722 * colors[i].b;
-            if(luma < 60) {
-                $(this).addClass("light");
-            }else {
-                $(this).removeClass("light");
+            if(!$(this).find("button").hasClass("locked")){
+                var hex = rgb2Hex(colors[i]);
+                $(this).css({"background-color": hex});
+                var input = $(this).find("input");
+                var luma = 0.2126 * colors[i].r + 0.7152 * colors[i].g + 0.0722 * colors[i].b;
+                if(luma <= lumaTh) {
+                    $(this).addClass("light");
+                }else {
+                    $(this).removeClass("light");
+                }
+                input.val(hex);
+                console.log(hex);
+                console.log(luma);
             }
-            input.val(hex);
-            console.log(hex);
-            console.log(luma);
         });
     });
 
@@ -41,7 +57,7 @@ $( document ).ready(function() {
             console.log(rgb);
             var luma = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
             console.log(luma);
-            if(luma < 60) {
+            if(luma <= lumaTh) {
                 switch(i) {
                    case 0: bodyStyles.setProperty("--text-color", "#b2c2d4"); break;
                    case 2: bodyStyles.setProperty("--active-text-color", "#b2c2d4"); break;

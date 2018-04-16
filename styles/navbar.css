@@ -2,11 +2,11 @@
   --base-color: #00b2ad;
   --site-background: #00736f;
   --active-color: #00fff7;
-  --active-text-color: #b2c2d4;
   --active-hover: #00bfb9;
-  --active-hover-text-color: #1F2D3D;
-  --text-color: #1F2D3D;
   --extra-color: #009994;
+  --text-color: #1F2D3D;
+  --active-text-color: #b2c2d4;
+  --active-hover-text-color: #1F2D3D;
 }
 
 .navbar {
@@ -14,9 +14,13 @@
     position: fixed;
     top: 0;
     width: 100%;
+    -webkit-box-shadow: -5px 10px 4px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: -5px 10px 4px -7px rgba(0,0,0,0.75);
+    box-shadow: -5px 10px 4px -7px rgba(0,0,0,0.75);
     background-color: var(--base-color);
   }
   .navbar a {
+    border-right: 0.5px solid var(--text-color);
     float: left;
     display: block;
     color: var(--text-color);
