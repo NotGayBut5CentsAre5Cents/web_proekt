@@ -5,6 +5,7 @@ var myFunc = [
     analogous,
     shades
 ];
+var bodyStyles = document.documentElement.style;
 $( document ).ready(function() {
     init();
     $( 'a' ).on( 'click', function() {
@@ -17,23 +18,48 @@ $( document ).ready(function() {
         $(".colors").each(function(i) {
             var hex = rgb2Hex(colors[i]);
             $(this).css({"background-color": hex});
-            $(this).find("input").val(hex)
+            var input = $(this).find("input");
+            var luma = 0.2126 * colors[i].r + 0.7152 * colors[i].g + 0.0722 * colors[i].b;
+            if(luma < 60) {
+                $(this).addClass("light");
+            }else {
+                $(this).removeClass("light");
+            }
+            input.val(hex);
             console.log(hex);
+            console.log(luma);
         });
     });
 
     $('#apply').on( 'click', function(){
         var colors = [];
         $(".colors").each(function(i) {
-            console.log($(this).css("background-color"));
-            colors.push($(this).css("background-color"));
+            var bgColor = $(this).css("background-color");
+            console.log(bgColor);
+            colors.push(bgColor);
+            var rgb = bgColor.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',');
+            console.log(rgb);
+            var luma = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+            console.log(luma);
+            if(luma < 60) {
+                switch(i) {
+                   case 0: bodyStyles.setProperty("--text-color", "#b2c2d4"); break;
+                   case 2: bodyStyles.setProperty("--active-text-color", "#b2c2d4"); break;
+                   case 3: bodyStyles.setProperty("--active-hover-text-color", "#b2c2d4"); break;
+                }
+            }else {
+                switch(i) {
+                    case 0: bodyStyles.setProperty("--text-color", "#1F2D3D"); break;
+                    case 2: bodyStyles.setProperty("--active-text-color", "#1F2D3D"); break;
+                    case 3: bodyStyles.setProperty("--active-hover-text-color", "#1F2D3D"); break;
+                 }
+            }
         });
-        var bodyStyles = document.documentElement.style;
         var properties = ["--base-color", "--site-background", "--active-color", "--active-hover", "--extra-color"];
         properties.forEach(function(item, index) {
             bodyStyles.setProperty(item, colors[index]);
         });
-        sessionStorageCss();
+        saveSessionCss();
     });
     console.log( "ready!" );
 });
@@ -46,8 +72,7 @@ function init() {
     getCssFromStorage();
 }
 
-function sessionStorageCss() {
-    var bodyStyles = document.documentElement.style;
+function saveSessionCss() {
     var properties = ["--base-color", "--site-background", "--active-color", "--active-hover", "--extra-color"];
     if(typeof(Storage) !== "undefined") {
         properties.forEach(function(item) {
@@ -57,7 +82,6 @@ function sessionStorageCss() {
 }
 
 function getCssFromStorage() {
-    var bodyStyles = document.documentElement.style;
     var properties = ["--base-color", "--site-background", "--active-color", "--active-hover", "--extra-color"];
     if(typeof(Storage) !== "undefined") {
         properties.forEach(function(item) {

@@ -12,7 +12,7 @@ body {margin:0;background: var(--site-background)}
     background: var(--base-color);
     font-size: 24px;
     padding: 25px;
-    color: white;
+    color: var(--text-color);
     text-align: center;
 }
 

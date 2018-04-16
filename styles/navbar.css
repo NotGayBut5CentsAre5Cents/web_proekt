@@ -2,7 +2,10 @@
   --base-color: #00b2ad;
   --site-background: #00736f;
   --active-color: #00fff7;
+  --active-text-color: #b2c2d4;
   --active-hover: #00bfb9;
+  --active-hover-text-color: #1F2D3D;
+  --text-color: #1F2D3D;
   --extra-color: #009994;
 }
 
@@ -16,7 +19,7 @@
   .navbar a {
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: var(--text-color);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -25,7 +28,7 @@
   
   .active {
     background-color: var(--active-color);
-    color: white;
+    color: var(--active-text-color);
   }
   
   .navbar .icon {
@@ -34,7 +37,7 @@
   
   .navbar a:hover{
     background-color: var(--active-hover);
-    color: white;
+    color: var(-var(--active-hover-text-color));
   }
   
   @media screen and (max-width: 600px) {

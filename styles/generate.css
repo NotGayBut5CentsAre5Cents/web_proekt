@@ -9,7 +9,8 @@ body {margin:0;background: var(--site-background)}
 
 .gen-button {
 	border: none;
-  background: var(--active-color); 
+	background: var(--active-color); 
+	color: var(--active-text-color);
   padding: 7px 14px; 
 	cursor: pointer; 
 	margin: 0;
@@ -20,7 +21,6 @@ body {margin:0;background: var(--site-background)}
 	border: 0;
 	margin: 0;
 	padding: 0;
-	color: #b2c2d4; 
 	margin-bottom: 5px;
 	background: var(--base-color);
 	height: 50px;
@@ -77,4 +77,8 @@ input[type="text"]:hover {
 	opacity: 0.3;
 	text-align: center;
 	text-transform: uppercase;
+}
+
+.light input {
+	color: #b2c2d4;
 }
