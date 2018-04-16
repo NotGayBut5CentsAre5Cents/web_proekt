@@ -1,0 +1,54 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>"Proekt po web"</title>
+		<link rel="stylesheet" type="text/css" href="styles/generate.css">
+		<link rel="stylesheet" type="text/css" href="styles/navbar.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="script.js"></script>
+	
+	</head>
+	<body>
+		<div class="navbar" id="topnav">
+			<a href="home.html">Home</a>
+			<a href="generate.html" class="active">Generate</a>
+			<a href="#contact">Contact</a>
+			<a href="#about">About</a>
+			<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="responsiveNav()">&#9776;</a>
+		</div>
+		<div class="content">
+
+			<div class="colors-container">
+				<div class="colors edit-hex" id="color-1" title="Edit" >
+					<input type="text">
+					<div id="base-color">Base color</div>
+				</div>
+				<div class="colors edit-hex" id="color-2">
+					<input type="text">
+				</div>
+				<div class="colors edit-hex" id="color-3">
+					<input type="text">
+				</div>
+				<div class="colors edit-hex" id="color-4">
+					<input type="text">
+				</div>
+				<div class="colors edit-hex" id="color-5">
+					<input type="text">
+				</div>
+			</div>
+
+			<div class="gen-con">
+					<select name="type" id="type-dropdown">
+						<option>Complementary</option>
+						<option>Monochromatic</option>
+						<option selected="selected">Triadic</option>
+						<option>Analogous </option>
+						<option>Shades</option>
+					</select>
+					<button class=gen-button id="generate" >Generate</button>
+					<button class=gen-button id="apply">Apply to site</button>
+			</div>
+
+		</div>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+body {margin:0;background: var(--site-background)}
+
+.content {
+    width: 100%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--base-color);
+    font-size: 24px;
+    padding: 25px;
+    color: white;
+    text-align: center;
+}
+
+
+.parallax {
+    background: url('../img/toze.jpg') no-repeat center;
+    background-size: auto;
+    background-attachment: fixed;
+    height: 500px;
+}
+
+.parallax p {
+    text-align: center;
+    height: 100%;
+    font-size: 50px;
+    font-weight: 500;
+    margin: auto;
+    color: black;
+    background: rgb(95, 158, 160, 0.5);
+    
+}
