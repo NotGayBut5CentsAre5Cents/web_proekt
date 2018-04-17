@@ -1,26 +1,24 @@
 :root {
-  --base-color: #00b2ad;
-  --site-background: #00736f;
-  --active-color: #00fff7;
-  --active-hover: #00bfb9;
+  --base-color: #333333;
+  --site-background: #1b1b1b;
+  --active-color: #008CBA;
+  --active-hover: #000000;
   --extra-color: #009994;
-  --text-color: #1F2D3D;
-  --active-text-color: #b2c2d4;
-  --active-hover-text-color: #1F2D3D;
+  --text-color: white;
+  --active-text-color: white;
+  --active-hover-text-color: white;
 }
 
 .navbar {
     overflow: hidden;
     position: fixed;
+    z-index: 500;
     top: 0;
     width: 100%;
-    -webkit-box-shadow: -5px 10px 4px -7px rgba(0,0,0,0.75);
-    -moz-box-shadow: -5px 10px 4px -7px rgba(0,0,0,0.75);
-    box-shadow: -5px 10px 4px -7px rgba(0,0,0,0.75);
     background-color: var(--base-color);
+    border-bottom: 1px solid;
   }
   .navbar a {
-    border-right: 0.5px solid var(--text-color);
     float: left;
     display: block;
     color: var(--text-color);
@@ -30,20 +28,20 @@
     font-size: 17px;
   }
   
-  .active {
-    background-color: var(--active-color);
-    color: var(--active-text-color);
-  }
-  
   .navbar .icon {
     display: none;
   }
   
-  .navbar a:hover{
+  .navbar a:hover:not(.active){
     background-color: var(--active-hover);
-    color: var(-var(--active-hover-text-color));
+    color: var(--active-hover-text-color);
   }
   
+  .navbar .active {
+    background-color: var(--active-color);
+    color: var(--active-text-color);
+  }
+
   @media screen and (max-width: 600px) {
     .navbar a:not(:first-child){
       display: none;
