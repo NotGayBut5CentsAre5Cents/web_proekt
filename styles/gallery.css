@@ -1,0 +1,42 @@
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--base-color);
+    padding: 25px;
+}
+
+.edit-hex input {
+    font-size: 4vmin;
+}
+
+.colors-container {
+    margin-top: 30px;
+    height: 180px;
+    padding: 2px;
+}
+
+.colors {
+    height: 90px;
+    width: 19%;
+    border-top: black 1px solid;
+    border-bottom: black 1px solid;
+}
+
+
+.copy-area {
+    margin-top: 5px;
+    resize: none;
+    width: 100%;
+    color: orangered;
+    font-size: 1em;
+    background: #333333;
+}
+
+.gen-button{
+    margin-top: 10px;
+}
+
+#gallery-heading {
+    font-size: 4vmin;
+    color: var(--text-color)
+}
