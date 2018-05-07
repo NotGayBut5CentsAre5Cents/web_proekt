@@ -151,7 +151,7 @@ function calcLuma(rgb) {
 }
 
 function saveSessionCss() {
-    var properties = ['--base-color', '--site-background', '--active-color', '--active-hover', '--extra-color'];
+    var properties = ['--base-color', '--site-background', '--active-color', '--active-hover', '--extra-color', '--text-color', '--active-text-color', '--active-hover-text-color'];
     if(typeof(Storage) !== 'undefined') {
         properties.forEach(function(item) {
             sessionStorage.setItem(item, bodyStyles.getPropertyValue(item));
@@ -160,7 +160,7 @@ function saveSessionCss() {
 }
 
 function getCssFromStorage() {
-    var properties = ['--base-color', '--site-background', '--active-color', '--active-hover', '--extra-color'];
+    var properties = ['--base-color', '--site-background', '--active-color', '--active-hover', '--extra-color', '--text-color', '--active-text-color', '--active-hover-text-color'];
     if(typeof(Storage) !== 'undefined') {
         properties.forEach(function(item) {
             bodyStyles.setProperty(item, sessionStorage.getItem(item));

@@ -36,6 +36,8 @@ function initGallery() {
         </div>\
         <textarea class=\"copy-area\"></textarea>\
         <button class=\"gen-button\" id=\"copy\">Copy</button>\
+        <button class=\"gen-button\" id=\"apply\">Apply to site</button>\
+		<button class=\"gen-button\" id=\"apply-perm\">Make default</button>\
         </div>"));
     }
     

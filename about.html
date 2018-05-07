@@ -1,0 +1,78 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>"Proekt po web"</title>
+		<link rel="stylesheet" type="text/css" href="styles/gallery.css">
+		<link rel="stylesheet" type="text/css" href="styles/about.css">
+        <link rel="stylesheet" type="text/css" href="styles/navbar.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="scripts/script.js"></script>
+	
+	</head>
+	<body>
+		<div class="navbar">
+			<a href="generate.html">Generate</a>
+			<a href="gallery.html">Gallery</a>
+			<a href="about.html" class="active">about</a>
+			<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="responsiveNav()">&#9776;</a>
+        </div>
+        <div class="intro">
+            <div class="container">
+				<p>Color Scheme generator by Telerik Arsov</p>
+				<p>This site uses 5 general rules for creating color schemes. Each scheme consists of 
+					5 colors, the first one being the base color.</p>
+				<table class="colorInfo">
+					<tbody>
+						<tr>
+							<td colspan="2"><hr size="1" noshade></td>
+						</tr>
+						<tr>
+							<td valign="top"> <img src="img/complementary.png" name="Complementary" alt="Color Wheel with complementary color scheme"> </td>
+							<td><p><strong>Complementary</strong> <br>
+								Colors that are opposite each other on the color wheel are considered to be complementary
+								colors (example: red and green).</p>
+								<p>The high contrast of complementary colors creates a vibrant look especially when
+								used at full saturation. This color scheme must be managed well so it is not jarring.</p>
+								<p>Complementary colors are tricky to use in large doses, but work well when you want
+								something to stand out. </p>
+								<p> Complementary colors are really bad for text. <br>
+								<br>
+								<img src="img/Swatch_compl.png" alt="complementary color scheme" width="150" height="120"> </p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2"><hr size="1" noshade></td>
+						</tr>
+						<tr>
+							<td valign="top"><img src="img/triad.png" name="Triad" alt="Color Wheel with triadic color scheme"></td>
+							<td><p><strong>Triad</strong> <br>
+							A triadic color scheme uses colors that are evenly spaced around the color wheel. </p>
+							<p>Triadic color harmonies tend to be quite vibrant, even if you use pale or unsaturated
+							versions of your hues.</p>
+							<p> To use a triadic harmony successfully, the colors should be carefully balanced
+							- let one color dominate and use the two others for accent.<br>
+							<br>
+							<img src="img/Swatch_triad.png" alt="triadic color scheme" width="150" height="120"> </p></td>
+						</tr>
+						<tr>
+							<td colspan="2"><hr size="1" noshade></td>
+						</tr>
+						<tr>
+							<td valign="top"><img src="img/analogous.png" name="Analogous" alt="Color Wheel with analogous color scheme"></td>
+							<td><p><strong>Analogous</strong> <br>
+							Analogous color schemes use colors that are next to each other on the color wheel.
+							They usually match well and create serene and comfortable designs. </p>
+							<p>Analogous color schemes are often found in nature and are harmonious and pleasing to
+							the eye.</p>
+							<p>Make sure you have enough contrast when choosing an analogous color scheme.</p>
+							<p>Choose one color to dominate, a second to support. The third color is used (along
+							with black, white or gray) as an accent.</p>
+							<p><br>
+							<img src="img/Swatch_analog.png" alt="analogous color scheme" width="150" height="120"> </p></td>
+						</tr>
+					</tbody>
+				</table>
+            </div>
+        </div>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+body {
+    margin:0;
+    background: var(--site-background);
+}
+
+
+.intro {
+    height: calc(100% - 50px);
+    width: 100%;
+    margin-top: 50px; 
+}
+
+.container {
+    font-size: 3vmin;
+    color: var(--text-color);
+}
+
+.colorInfo {
+    width: 100%; 
+    border: 0px; 
+}
+
+td {
+    padding: 3px;
+    color: var(--text-color);
+}
+
+table {
+    border-spacing: 0px;
+}
+
