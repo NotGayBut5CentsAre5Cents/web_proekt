@@ -136,6 +136,20 @@ $( document ).ready(function() {
     $('#load-curr').on('click', function(){
         loadCurr();
     });
+    $('.register').on('click', function(){
+        $('#register').show();
+        $('#logIn').hide();
+        $('#register').find(".close").on( 'click', function(){
+            $('#register').hide();
+        });
+    });
+    $('.login').on('click', function(){
+        $('#logIn').show();
+        $('#register').hide();
+        $('#logIn').find(".close").on( 'click', function(){
+            $('#logIn').hide();
+        });
+    });
     console.log( 'ready!' );
     init();
 });

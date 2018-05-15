@@ -17,51 +17,56 @@
     width: 100%;
     background-color: var(--base-color);
     border-bottom: 1px solid;
-  }
-  .navbar a {
-    float: left;
-    display: block;
-    color: var(--text-color);
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
-  .navbar .icon {
+}
+.navbar a {
+  float: left;
+  display: block;
+  color: var(--text-color);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+a.login, a.register{
+  float: right;
+}
+
+
+.navbar .icon {
+  display: none;
+}
+
+.navbar a:hover:not(.active){
+  background-color: var(--active-hover);
+  color: var(--active-hover-text-color);
+}
+
+.navbar .active {
+  background-color: var(--active-color);
+  color: var(--active-text-color);
+}
+
+@media screen and (max-width: 600px) {
+  .navbar a:not(:first-child){
     display: none;
   }
-  
-  .navbar a:hover:not(.active){
-    background-color: var(--active-hover);
-    color: var(--active-hover-text-color);
+  .navbar a.icon {
+    float: right;
+    display: block;
   }
-  
-  .navbar .active {
-    background-color: var(--active-color);
-    color: var(--active-text-color);
-  }
+}
 
-  @media screen and (max-width: 600px) {
-    .navbar a:not(:first-child){
-      display: none;
-    }
-    .navbar a.icon {
-      float: right;
-      display: block;
-    }
+@media screen and (max-width: 600px) {
+  .navbar.responsive {position: relative;}
+  .navbar.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
   }
-  
-  @media screen and (max-width: 600px) {
-    .navbar.responsive {position: relative;}
-    .navbar.responsive .icon {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .navbar.responsive a {
-      float: none;
-      display: block;
-      text-align: left;
-    }
+  .navbar.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
   }
+}

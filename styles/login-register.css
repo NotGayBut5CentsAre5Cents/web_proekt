@@ -1,0 +1,21 @@
+input[type=email],
+input[type=password]{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+.modal-content.reg {
+    max-height: 480px;
+    max-width: 800px;
+}
+
+.modal-content.log {
+    max-width: 800px;
+    max-height: 410px;
+}

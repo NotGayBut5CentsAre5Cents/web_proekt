@@ -47,7 +47,7 @@ body {
 }
 
 .gen-con > select {
-	height:40;
+	height: 40px;
 	min-width: auto; 
 	font-size: 20px;
 	font-weight: 500;
