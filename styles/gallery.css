@@ -5,19 +5,23 @@
     padding: 25px;
 }
 
-.edit-hex input {
-    font-size: 4vmin;
+.edit-hex > input {
+    font-size: 28;
 }
 
 .colors-container {
     margin-top: 30px;
-    height: 180px;
+    height: auto;
+    width: auto;
     padding: 2px;
 }
 
 .colors {
     height: 90px;
+    min-width: 133px;
+	min-height: 60px;
     width: 19%;
+    border: none;
     border-top: black 1px solid;
     border-bottom: black 1px solid;
 }
@@ -25,6 +29,7 @@
 
 .copy-area {
     margin-top: 5px;
+    height: 30px;
     resize: none;
     width: 100%;
     color: orangered;
@@ -34,9 +39,10 @@
 
 .gen-button{
     margin-top: 10px;
+    float: none;
 }
 
 #gallery-heading {
-    font-size: 4vmin;
+    font-size: 37;
     color: var(--text-color)
 }

@@ -1,13 +1,28 @@
 var json = {
     "Colors": [ ["red", "#3454ff", "green", "yellow", "white"],
-                ["red", "blue", "green", "yellow", "white"],
-                ["red", "blue", "green", "yellow", "white"],
+                ["#9800b3", "#2b0033", "#2e0f33", "#6c0080", "#a036b3"],
+                ["#333333", "#1b1b1b", "#009994", "#008CBA", "#000000"],
                 ["red", "blue", "green", "yellow", "white"],
                 ["red", "blue", "green", "yellow", "white"],
                 ["red", "blue", "green", "yellow", "white"]]
 };
 $( document ).ready(function() {
     initGallery();  
+
+    $('.colors-container > #apply').on( 'click', function(){
+        apply($(this).parent());
+    });
+
+    $('.colors-container > #apply-perm').on( 'click', function(){
+        apply($(this).parent());
+        saveSessionCss();
+    });
+
+    $('.colors-container > #copy').on('click', function() {
+        $(this).siblings('.copy-area').select();
+        document.execCommand('copy'); 
+        console.log("ayy")  
+    });
 });
 
 

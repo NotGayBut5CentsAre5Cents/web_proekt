@@ -8,7 +8,9 @@ var myFunc = [
 var lumaTh = 125;
 var bodyStyles = document.documentElement.style;
 $( document ).ready(function() {
-    init();
+    r_out = document.querySelector('#r_out'),
+    g_out = document.querySelector('#g_out'),
+    b_out = document.querySelector('#b_out');
     $('a').on('click', function() {
         $(this).parent().find('a.active').removeClass('active');
         $(this).addClass('active');
@@ -16,14 +18,60 @@ $( document ).ready(function() {
     
     $('.colors > input').on('keyup', function() {
         if(!$(this).siblings('button').hasClass('locked')) {
-            $(this).parent().css('background-color', $(this).val());
+            var val = $(this).val().trim();
+            console.log(val)
+            $(this).parent().css('background-color', val);
             try {
-                var rgb  = hex2Rgb($(this).val()[0] != "#" ? nameToHex($(this).val()) : $(this).val());
+                var rgb  = hex2Rgb(val[0] != "#" ? nameToHex(val) : val);
+                updateColor($(this), rgb);
                 var luma = calcLuma(rgb);
                 if(luma <= lumaTh) {
                     $(this).parent().addClass('light');
                 }else {
                     $(this).parent().removeClass('light');
+                }
+            }catch(TypeError) {
+                console.log("bad hex");
+            }
+        }
+    });
+
+    $('.colors > input').on("change keyup paste input", function() {
+        console.log("VCAHNEG");
+        var val = $(this).val().trim();
+        try {
+            var rgb  = hex2Rgb(val[0] != "#" ? nameToHex(val) : val);
+            updateColor($(this), rgb);
+        }catch(TypeError) {
+            console.log("bad hex");
+        }
+    });
+
+    $('.colors > fieldset').find("input").on('input', function() {
+        if(!$(this).parent().siblings('button').hasClass('locked')) {
+            var r = $(this).parent().parent().find("#r")[0],
+            g = $(this).parent().parent().find("#g")[0],
+            b = $(this).parent().parent().find("#b")[0],
+            r_out = $(this).parent().parent().find("#r_out")[0],
+            g_out = $(this).parent().parent().find("#g_out")[0],
+            b_out = $(this).parent().parent().find("#b_out")[0],
+            r_hex = parseInt(r.value, 10).toString(16),
+            g_hex = parseInt(g.value, 10).toString(16),
+            b_hex = parseInt(b.value, 10).toString(16),
+            hex = "#" + pad(r_hex) + pad(g_hex) + pad(b_hex);  
+            r_out.value = r.value;
+            g_out.value = g.value;
+            b_out.value = b.value;
+            console.log("input");
+            $(this).parent().siblings('input').val(hex);
+            $(this).parent().parent().css('background-color', hex);
+            try {
+                var rgb  = hex2Rgb(hex);
+                var luma = calcLuma(rgb);
+                if(luma <= lumaTh) {
+                    $(this).parent().parent().addClass('light');
+                }else {
+                    $(this).parent().parent().removeClass('light');
                 }
             }catch(TypeError) {
                 console.log("bad hex");
@@ -43,7 +91,7 @@ $( document ).ready(function() {
             var color = randomColor();
             var rgb  = hex2Rgb(color);
             $(this).parent().css('background-color', color);
-            $(this).siblings('input').val(color);
+            $(this).siblings('input').val(color).change();
             var luma = calcLuma(rgb);
             if(luma <= lumaTh) {
                 $(this).parent().addClass('light');
@@ -54,7 +102,7 @@ $( document ).ready(function() {
         }
     });
     $('#generate').on('click', function(){
-        var color = $('#color-1 :input').val();
+        var color = $('#color-1 :input').val().trim();
         console.log(color[0]);
         if(color[0] != "#") {
             color = nameToHex(color);
@@ -71,7 +119,7 @@ $( document ).ready(function() {
                 }else {
                     $(this).removeClass('light');
                 }
-                input.val(hex);
+                input.val(hex).change();
                 console.log(hex);
                 console.log(luma);
             }
@@ -79,23 +127,26 @@ $( document ).ready(function() {
     });
 
     $('#apply').on( 'click', function(){
-        apply();
+        apply($('.colors-container'));
     });
     $('#apply-perm').on('click', function(){
-        apply();
+        apply($('.colors-container'));
         saveSessionCss();
     });
-    $('#copy').on('click', function() {
-        $(this).siblings('.copy-area').select();
-        document.execCommand('copy'); 
-        console.log("ayy")  
+    $('#load-curr').on('click', function(){
+        loadCurr();
     });
     console.log( 'ready!' );
+    init();
 });
 
-function apply() {
+function pad(n){
+    return (n.length < 2) ? "0" + n : n;
+}
+
+function apply(parent) {
     var colors = [];
-    $('.colors').each(function(i) {
+    $(parent).find('.colors').each(function(i) {
         var bgColor = $(this).css('background-color');
         console.log(bgColor);
         colors.push(bgColor);
@@ -105,9 +156,9 @@ function apply() {
         console.log(luma);
         if(luma <= lumaTh) {
             switch(i) {
-                case 0: bodyStyles.setProperty('--text-color', '#b2c2d4'); break;
-                case 3: bodyStyles.setProperty('--active-text-color', '#b2c2d4'); break;
-                case 4: bodyStyles.setProperty('--active-hover-text-color', '#b2c2d4'); break;
+                case 0: bodyStyles.setProperty('--text-color', 'white'); break;
+                case 3: bodyStyles.setProperty('--active-text-color', 'white'); break;
+                case 4: bodyStyles.setProperty('--active-hover-text-color', 'white'); break;
             }
         }else {
             switch(i) {
@@ -124,30 +175,79 @@ function apply() {
 }
 
 function init() {
+    if(typeof(Storage) !== 'undefined'){
+        if(sessionStorage.getItem('firstTime') === null){
+            sessionStorage.setItem('firstTime', "yea");
+            $('#tutorialModal').show();
+            $('#tutorialModal').find(".close").on( 'click', function(){
+                $('#tutorialModal').hide();
+            });
+        }
+    }
     var rainbow= ['red', 'orange', 'yellow', 'blue', 'green']
+    setInputs(rainbow);
+    getCssFromStorage();
+}
+
+function setInputs(rainbow){
     $('.colors-container').each(function(row) {
         var colors_container = $(this);
         colors_container.children().each(function(index) {
-            var rgb;
+            var rgb, inputText;
             if(!colors_container.hasClass('gallery')) {
-                rgb = hex2Rgb(nameToHex(rainbow[index]));
-            
+                inputText = rainbow[index].trim();
+                rgb = hex2Rgb(nameToHex(inputText));
+                console.log(rgb);
+                if(rgb == null) {
+                    rgbArr = rainbow[index].replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',')
+                    rgb = new Object();
+                    rgb.r = parseInt(rgbArr[0]);
+                    rgb.g = parseInt(rgbArr[1]);
+                    rgb.b = parseInt(rgbArr[2])
+                    console.log(rgbArr);
+                    inputText = rgb2Hex(rgb);
+                    console.log(inputText);
+                }
                 var luma = calcLuma(rgb);
                 if(luma <= lumaTh) {
                     $(this).addClass('light');
                 }else {
                     $(this).removeClass('light');
                 }
-                $(this).css({'background-color': rainbow[index]});
-                $(this).find('input').val(rainbow[index]);
+                $(this).css({'background-color': inputText});
+                $(this).find('input').val(inputText).change();
             }
         });
     });
-    getCssFromStorage();
+}
+
+function updateColor(parent, rgb) {
+    var r = parent.parent().find("#r")[0],
+    g = parent.parent().find("#g")[0],
+    b = parent.parent().find("#b")[0],
+    r_out = parent.parent().find("#r_out")[0],
+    g_out = parent.parent().find("#g_out")[0],
+    b_out = parent.parent().find("#b_out")[0];
+    r.value = rgb.r;
+    g.value = rgb.g;
+    b.value = rgb.b
+    r_out.value = r.value;
+    g_out.value = g.value;
+    b_out.value = b.value; 
 }
 
 function calcLuma(rgb) {
     return luma = 0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b;
+}
+
+function loadCurr(){
+    var values = [];
+    var properties = ['--base-color', '--site-background', '--extra-color', '--active-color', '--active-hover'];
+    properties.forEach(function(item) {
+        values.push(getComputedStyle(document.documentElement, null).getPropertyValue(item));
+    });
+    console.log(values);
+    setInputs(values);
 }
 
 function saveSessionCss() {

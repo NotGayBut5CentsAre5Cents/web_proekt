@@ -4,7 +4,8 @@
 		<title>"Proekt po web"</title>
 		<link rel="stylesheet" type="text/css" href="styles/navbar.css">
 		<link rel="stylesheet" type="text/css" href="styles/generate.css">
-		<link rel="stylesheet" type="text/css" href="styles/colors-container.css"
+		<link rel="stylesheet" type="text/css" href="styles/colors-container.css">
+		<link rel="stylesheet" type="text/css" href="styles/tutorial-modal.css">
 		<!--This is used only for the icons all other css is done locally-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,6 +19,25 @@
 			<a href="about.html">About</a>
 			<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="responsiveNav()">&#9776;</a>
 		</div>
+		<div id="tutorialModal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close">&times;</span>
+					<h2>A handy tutorial</h2>
+			  	</div>
+			 	<div class="modal-body">
+					<p>Looks like its your first time on the site, here is a tutorial on how to use it.</p>
+					<p>Click on the  <i class="fa fa-unlock-alt"></i>  
+						to lock the color you like, which means it wont change at all. 
+						Click on the <i class="fa fa-refresh"></i>   to generate a new</p>
+					<p> random color. Use the sliders to change the colors or type in the color name in the box or hexcode.</p>
+					<p>Pressing the apply to site will apply the current theme until you refres or change pages. 
+						However using the make default will change the theme until you close the site.</p>
+					<p>You can even login to save your favourite themes.</p>
+				</div>
+			</div>
+		</div>
 		<div class="content">
 			<div class="colors-container">
 				<div class="colors edit-hex" id="color-1" title="Edit" >
@@ -26,6 +46,22 @@
 					<button class="lock"><i class="fa fa-unlock-alt"></i></button>
 					<br>
 					<button class="random"><i class="fa fa-refresh"></i></button>
+					<fieldset id="red">
+						<label for="r">R</label>
+						<input type="range" min="0" max="255" id="r" step="1" value="0">
+						<output for="r" id="r_out">0</output>
+					</fieldset> 
+					<fieldset>
+						<label for="g">G</label>
+						<input type="range" min="0" max="255" id="g" step="1" value="0">
+						<output for="g" id="g_out">0</output>
+					</fieldset>
+						  
+					<fieldset>
+						<label for="b">B</label>
+						<input type="range" min="0" max="255" id="b" step="1" value="0">
+						<output for="b" id="b_out">0</output>
+					</fieldset> 
 				</div>
 				<div class="colors edit-hex" id="color-2">
 					<input type="text">
@@ -33,6 +69,22 @@
 					<button class="lock"><i class="fa fa-unlock-alt"></i></button>
 					<br>
 					<button class="random"><i class="fa fa-refresh"></i></button>
+					<fieldset id="red">
+						<label for="r">R</label>
+						<input type="range" min="0" max="255" id="r" step="1" value="0">
+						<output for="r" id="r_out">0</output>
+					</fieldset> 
+					<fieldset>
+						<label for="g">G</label>
+						<input type="range" min="0" max="255" id="g" step="1" value="0">
+						<output for="g" id="g_out">0</output>
+					</fieldset>
+						  
+					<fieldset>
+						<label for="b">B</label>
+						<input type="range" min="0" max="255" id="b" step="1" value="0">
+						<output for="b" id="b_out">0</output>
+					</fieldset> 
 				</div>
 				<div class="colors edit-hex" id="color-3">
 					<input type="text">
@@ -40,6 +92,22 @@
 					<button class="lock"><i class="fa fa-unlock-alt"></i></button>
 					<br>
 					<button class="random"><i class="fa fa-refresh"></i></button>
+					<fieldset id="red">
+						<label for="r">R</label>
+						<input type="range" min="0" max="255" id="r" step="1" value="0">
+						<output for="r" id="r_out">0</output>
+					</fieldset> 
+					<fieldset>
+						<label for="g">G</label>
+						<input type="range" min="0" max="255" id="g" step="1" value="0">
+						<output for="g" id="g_out">0</output>
+					</fieldset>
+						  
+					<fieldset>
+						<label for="b">B</label>
+						<input type="range" min="0" max="255" id="b" step="1" value="0">
+						<output for="b" id="b_out">0</output>
+					</fieldset> 
 				</div>
 				<div class="colors edit-hex" id="color-4">
 					<input type="text">
@@ -47,6 +115,22 @@
 					<button class="lock"><i class="fa fa-unlock-alt"></i></button>
 					<br>
 					<button class="random"><i class="fa fa-refresh"></i></button>
+					<fieldset id="red">
+						<label for="r">R</label>
+						<input type="range" min="0" max="255" id="r" step="1" value="0">
+						<output for="r" id="r_out">0</output>
+					</fieldset> 
+					<fieldset>
+						<label for="g">G</label>
+						<input type="range" min="0" max="255" id="g" step="1" value="0">
+						<output for="g" id="g_out">0</output>
+					</fieldset>
+						  
+					<fieldset>
+						<label for="b">B</label>
+						<input type="range" min="0" max="255" id="b" step="1" value="0">
+						<output for="b" id="b_out">0</output>
+					</fieldset> 
 				</div>
 				<div class="colors edit-hex" id="color-5">
 					<input type="text">
@@ -54,6 +138,22 @@
 					<button class="lock"><i class="fa fa-unlock-alt"></i></button>
 					<br>
 					<button class="random"><i class="fa fa-refresh"></i></button>
+					<fieldset id="red">
+						<label for="r">R</label>
+						<input type="range" min="0" max="255" id="r" step="1" value="0">
+						<output for="r" id="r_out">0</output>
+					</fieldset> 
+					<fieldset>
+						<label for="g">G</label>
+						<input type="range" min="0" max="255" id="g" step="1" value="0">
+						<output for="g" id="g_out">0</output>
+					</fieldset>
+						  
+					<fieldset>
+						<label for="b">B</label>
+						<input type="range" min="0" max="255" id="b" step="1" value="0">
+						<output for="b" id="b_out">0</output>
+					</fieldset> 
 				</div>
 			</div>
 
@@ -68,6 +168,7 @@
 					<button class="gen-button" id="generate" >Generate</button>
 					<button class="gen-button" id="apply">Apply to site</button>
 					<button class="gen-button" id="apply-perm">Make default</button>
+					<button class="gen-button" id="load-curr">Load current themes</button>
 			</div>
 
 		</div>
